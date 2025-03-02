@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   acceleration: 10
-  jumpHeight: 10
-  canFly: 0
+  jumpHeight: 100
+  canFly: 1
