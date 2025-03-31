@@ -7,9 +7,14 @@ public class Playermovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     public PlayerData data;
+    public Animator anim;
+
+    private Vector3 pastPos;
 
     //what we will set the velocity to
     private float realSpeed;
+
+    private float timer;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,10 +23,34 @@ public class Playermovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        pastPos = transform.position;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (timer >= 0.5)
+        {
+            pastPos = transform.position;
+            timer = 0;
+        }
+        else
+        {
+            timer += Time.deltaTime;
+        }
+
         input();
+
+        AnimStuff(isGrounded());
+    }
+
+    public void AnimStuff(bool grounded)
+    {
+        anim.SetBool("Grounded", grounded);
+
+        anim.SetBool("Moving", Vector3.Distance(pastPos, transform.position) >= 0.1);
     }
 
     //input function cuz its bad practice to put it all into the update loop
@@ -64,7 +93,7 @@ public class Playermovement : MonoBehaviour
         //if the ray touches the ground, the player is touching the ground
         return hit.collider != null && hit.collider.tag != "Player";
         //                              
-        //                             / \ this is here to make sure that the ray ignored that players body
+        //                             / \ this is here to make sure that the ray ignores that players body
         //                              |
     }
 }

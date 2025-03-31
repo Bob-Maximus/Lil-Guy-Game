@@ -6,12 +6,9 @@ using UnityEngine;
 public class PlayerDeath : MonoBehaviour
 {
     //what will tell the player they're dead
-    GameObject deathMessage;
+    public GameObject deathMessage;
     private void Start()
     {
-        //getting the deathmessage
-        deathMessage = GameObject.Find("Death Message");
-
         //making it invisible to not have it bkock the view
         deathMessage.SetActive(false);
     }
