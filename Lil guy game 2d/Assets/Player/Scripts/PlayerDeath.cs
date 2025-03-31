@@ -6,12 +6,10 @@ using UnityEngine;
 public class PlayerDeath : MonoBehaviour
 {
     //what will tell the player they're dead
-    GameObject deathMessage;
+    public GameObject deathMessage;
+    public GameObject winMessage;
     private void Start()
     {
-        //getting the deathmessage
-        deathMessage = GameObject.Find("Death Message");
-
         //making it invisible to not have it bkock the view
         deathMessage.SetActive(false);
     }
@@ -22,6 +20,12 @@ public class PlayerDeath : MonoBehaviour
         deathMessage.SetActive(true);
         Time.timeScale = 0;
     }
+    public void Win()
+    {
+        //showing the deathmessage and pausing time 
+        winMessage.SetActive(true);
+        Time.timeScale = 0;
+    }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -29,6 +33,9 @@ public class PlayerDeath : MonoBehaviour
         if (col.gameObject.tag == "bad")
         {
             Death();
+        } else if (col.gameObject.tag == "Win")
+        {
+            Win();
         }
     }
 }
