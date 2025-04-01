@@ -8,5 +8,11 @@ public class LevelLoader : MonoBehaviour
     public void LoadLevel(string name)
     {
         SceneManager.LoadScene(name);
+        Time.timeScale = 1;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
