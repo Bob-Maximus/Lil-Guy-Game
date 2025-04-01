@@ -79,6 +79,7 @@ public class Playermovement : MonoBehaviour
             if (data.canFly || isGrounded())
             {
                 rb.AddForce(transform.up * data.jumpHeight * 10);
+                return;
             }
         }
     }

@@ -8,11 +8,6 @@ public class PlayerDeath : MonoBehaviour
     //what will tell the player they're dead
     public GameObject deathMessage;
     public GameObject winMessage;
-    private void Start()
-    {
-        //making it invisible to not have it bkock the view
-        deathMessage.SetActive(false);
-    }
 
     public void Death()
     {
